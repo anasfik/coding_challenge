@@ -14,6 +14,7 @@ part 'home_state.dart';
 /// {@endtemplate}
 class HomeCubit extends Cubit<HomeState> {
   final SoltanaRepository repository;
+
   List<TabItem> get tabItems => [
         TabItem(name: 'الرئيسية'),
         TabItem(name: 'الرئيسية'),
@@ -32,7 +33,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit({
     required this.repository,
-  }) : super(HomeInitial());
+  }) : super(HomeInitial()) {
+    _fetchPosts();
+  }
 
   /// Fetch posts from the [repository] and emit the new states based on the results.
   ///
@@ -41,6 +44,7 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final paginationIndex = state.paginationIndex;
 
+      emit(state.copyWith(isFetching: true));
       final currentFetchPosts = await repository.posts(paginationIndex);
 
       final posts = [...state.posts, ...currentFetchPosts];
@@ -49,7 +53,7 @@ class HomeCubit extends Cubit<HomeState> {
     } catch (e) {
       _loadPostsFromLocalDatabase();
     } finally {
-      emit(state.copyWith(hasError: false));
+      emit(state.copyWith(hasError: false, isFetching: false));
     }
   }
 

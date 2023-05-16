@@ -19,14 +19,16 @@ class HomeScreen extends StatelessWidget {
         ),
         child: SafeArea(
           child: Scaffold(
-            drawer: Drawer(),
+            drawer: const Drawer(),
             appBar: const HomeAppBar(),
             body: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
                 if (state.hasError) {
-                  return Center(
+                  return const Center(
                     child: Icon(Icons.error),
                   );
+                } else if (state.isFetching) {
+                  return const Center(child: CircularProgressIndicator());
                 } else {
                   final posts = state.posts;
                   return ListView.builder(

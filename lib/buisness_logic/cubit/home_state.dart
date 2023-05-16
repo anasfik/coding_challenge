@@ -14,23 +14,32 @@ class HomeState extends Equatable {
   /// Whether there is an error while fetching the posts or not.
   final bool hasError;
 
+  /// Wether the posts are being fetched or not.
+  final bool isFetching;
+
   /// {@macro home_state}
   const HomeState({
     this.posts = const [],
     this.paginationIndex = 1,
     this.hasError = false,
+    this.isFetching = false,
   });
 
   @override
-  List<Object?> get props => [posts, paginationIndex, hasError];
+  List<Object?> get props => [posts, paginationIndex, hasError, isFetching];
 
   /// This generates a new state with the provided new values.
-  HomeState copyWith(
-      {List<SoltanaPost>? posts, int? paginationIndex, bool? hasError}) {
+  HomeState copyWith({
+    List<SoltanaPost>? posts,
+    int? paginationIndex,
+    bool? hasError,
+    bool? isFetching,
+  }) {
     return HomeState(
       posts: posts ?? this.posts,
       paginationIndex: paginationIndex ?? this.paginationIndex,
       hasError: hasError ?? this.hasError,
+      isFetching: isFetching ?? this.isFetching,
     );
   }
 }

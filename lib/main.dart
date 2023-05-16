@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'data/repositories/soltana_repository.dart';
+import 'data/services/local.dart';
 import 'presentation/home/home.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  await LocalDatabase.instance.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

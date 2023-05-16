@@ -32,10 +32,11 @@ class SoltanaPost extends Equatable {
     return SoltanaPost(
       title: map['title']['rendered'] as String,
       content: map['content']['rendered'] as String,
-      imagePath: (map['og_image'] as List).first["url"] as String,
+      imagePath:
+          (map["yoast_head_json"]['og_image'] as List).first["url"] as String,
     );
   }
 
   @override
-  List<Object?> get props => [title, content, imagePath];
+  List<Object?> get props => [title, content, imagePath, category, date];
 }
