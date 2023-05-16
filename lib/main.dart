@@ -18,10 +18,36 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => SoltanaRepository(),
-      child: const MaterialApp(
-        title: 'Cosing challeng',
-        home: HomeScreen(),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: MaterialApp(
+          theme: theme,
+          title: 'Coding challeng',
+          home: const HomeScreen(),
+          builder: (context, child) {
+            return Directionality(
+              textDirection: TextDirection.rtl,
+              child: child!,
+            );
+          },
+        ),
       ),
     );
   }
 }
+
+final theme = ThemeData.from(
+  colorScheme: const ColorScheme.light(
+    primary: Colors.purple,
+    secondary: Colors.purpleAccent,
+  ),
+).copyWith(
+  appBarTheme: const AppBarTheme(
+    elevation: 0.0,
+    backgroundColor: Colors.transparent,
+  ),
+  tabBarTheme: const TabBarTheme(
+    indicatorColor: Colors.transparent,
+    indicator: null,
+  ),
+);

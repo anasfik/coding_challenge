@@ -12,47 +12,46 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: BlocProvider<HomeCubit>(
-        create: (context) => HomeCubit(
-          repository: RepositoryProvider.of<SoltanaRepository>(context),
-        ),
-        child: SafeArea(
-          child: Scaffold(
-            drawer: const Drawer(),
-            appBar: const HomeAppBar(),
-            body: BlocBuilder<HomeCubit, HomeState>(
-              builder: (context, state) {
-                final cubit = context.read<HomeCubit>();
+    return BlocProvider<HomeCubit>(
+      create: (context) => HomeCubit(
+        repository: RepositoryProvider.of<SoltanaRepository>(context),
+      ),
+      child: SafeArea(
+        child: Scaffold(
+          drawer: const Drawer(),
+          appBar: const HomeAppBar(),
+          body: BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              final cubit = context.read<HomeCubit>();
 
-                if (state.hasError) {
-                  return const Center(
-                    child: Icon(Icons.error),
-                  );
-                } else {
-                  final posts = state.posts;
-                  return ListView.builder(
-                    itemCount: posts.length,
-                    controller: cubit.scrollController,
-                    itemBuilder: (context, index) {
-                      final current = posts[index];
+              if (state.hasError) {
+                return const Center(
+                  child: Icon(Icons.error),
+                );
+              } else {
+                final posts = state.posts;
+                return ListView.builder(
+                  itemCount: posts.length,
+                  controller: cubit.scrollController,
+                  itemBuilder: (context, index) {
+                    final current = posts[index];
 
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    SoltanaPostFullScreen(post: current),
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => BlocProvider.value(
+                                value: cubit,
+                                child: SoltanaPostFullScreen(post: current),
                               ),
-                            );
-                          },
-                          child: SoltanaPostCard(post: current));
-                    },
-                  );
-                }
-              },
-            ),
+                            ),
+                          );
+                        },
+                        child: SoltanaPostCard(post: current));
+                  },
+                );
+              }
+            },
           ),
         ),
       ),
