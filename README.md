@@ -1,16 +1,16 @@
-# coding_challenge_app
+# How to run
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. You will need to have Dart & Flutter installed in your machine. You can find the instructions [here](https://flutter.dev/docs/get-started/install).
+2. Clone this repo, with git run:
+```bash
+git clone https://github.com/anasfik/coding_challenge
+```
+3. Open the project in your favorite IDE (I use VSCode).
+4. from your command line run:
+```bash
+flutter pub get
+```
+5. Run the app with:
+```bash
+flutter run
+```
