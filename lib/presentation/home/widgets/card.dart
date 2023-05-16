@@ -1,8 +1,11 @@
+import 'package:coding_challenge_app/buisness_logic/cubit/home_cubit.dart';
 import 'package:coding_challenge_app/data/models/soltana_model.dart';
 import 'package:coding_challenge_app/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../card_full_screen/card_full_screen.dart';
+import 'loader_widget.dart';
 
 class SoltanaPostCard extends StatelessWidget {
   const SoltanaPostCard({
@@ -13,17 +16,11 @@ class SoltanaPostCard extends StatelessWidget {
   final SoltanaPost post;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => SoltanaPostFullScreen(post: post),
-          ),
-        );
-      },
+    return Hero(
+      tag: post.date.toString(),
       child: Container(
         clipBehavior: Clip.hardEdge,
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(15.0),
         decoration: const BoxDecoration(color: Colors.transparent),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +35,7 @@ class SoltanaPostCard extends StatelessWidget {
                     post.imagePath,
                     width: double.infinity,
                     height: 200.0,
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.cover,
                     loadingBuilder: (context, child, loadingProgress) {
                       return Container(
                         height: 200.0,
@@ -82,6 +79,17 @@ class SoltanaPostCard extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 15.0),
+            BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                final isLastCard = state.posts.last == post;
+
+                if (state.isFetching && isLastCard) {
+                  return const WidgetMeantForLoading();
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+            ),
           ],
         ),
       ),

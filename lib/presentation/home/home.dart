@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repositories/soltana_repository.dart';
+import '../card_full_screen/card_full_screen.dart';
 import 'widgets/home_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,21 +24,30 @@ class HomeScreen extends StatelessWidget {
             appBar: const HomeAppBar(),
             body: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
+                final cubit = context.read<HomeCubit>();
+
                 if (state.hasError) {
                   return const Center(
                     child: Icon(Icons.error),
                   );
-                } else if (state.isFetching) {
-                  return const Center(child: CircularProgressIndicator());
                 } else {
                   final posts = state.posts;
                   return ListView.builder(
-                    padding: const EdgeInsets.only(top: 15),
                     itemCount: posts.length,
+                    controller: cubit.scrollController,
                     itemBuilder: (context, index) {
                       final current = posts[index];
 
-                      return SoltanaPostCard(post: current);
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SoltanaPostFullScreen(post: current),
+                              ),
+                            );
+                          },
+                          child: SoltanaPostCard(post: current));
                     },
                   );
                 }

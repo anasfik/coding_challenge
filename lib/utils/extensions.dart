@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 extension IntExtension on int {
   bool get isNotOk => this < 200 || this >= 300;
 }
@@ -20,5 +22,14 @@ extension DateTimeExtension on DateTime {
       "ديسمبر",
     ];
     return "${date.year} ${months[date.month - 1]} ${date.day}";
+  }
+}
+
+extension ScrollControllerExtension on ScrollController {
+  bool get nearToReachEndOfPage {
+    final maxScroll = this.position.maxScrollExtent;
+    final currentScroll = this.position.pixels;
+    final delta = 50.0;
+    return maxScroll - currentScroll <= delta;
   }
 }

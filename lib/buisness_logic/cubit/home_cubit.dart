@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:coding_challenge_app/utils/extensions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ part 'home_state.dart';
 /// {@endtemplate}
 class HomeCubit extends Cubit<HomeState> {
   final SoltanaRepository repository;
+  ScrollController? scrollController;
 
   List<TabItem> get tabItems => [
         TabItem(name: 'الرئيسية'),
@@ -34,6 +36,14 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit({
     required this.repository,
   }) : super(HomeInitial()) {
+    scrollController = ScrollController()
+      ..addListener(() {
+        if (scrollController!.nearToReachEndOfPage) {
+          emit(state.copyWith(isFetching: true));
+          loadMorePosts();
+        }
+      });
+
     _fetchPosts();
   }
 
@@ -44,7 +54,6 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final paginationIndex = state.paginationIndex;
 
-      emit(state.copyWith(isFetching: true));
       final currentFetchPosts = await repository.posts(paginationIndex);
 
       final posts = [...state.posts, ...currentFetchPosts];

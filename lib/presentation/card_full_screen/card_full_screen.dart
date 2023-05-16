@@ -1,6 +1,8 @@
 import 'package:coding_challenge_app/data/models/soltana_model.dart';
 import 'package:flutter/material.dart';
 
+import '../home/widgets/card.dart';
+
 class SoltanaPostFullScreen extends StatelessWidget {
   const SoltanaPostFullScreen({
     super.key,
@@ -10,6 +12,12 @@ class SoltanaPostFullScreen extends StatelessWidget {
   final SoltanaPost post;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          SoltanaPostCard(post: post),
+        ],
+      ),
+    );
   }
 }
