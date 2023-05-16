@@ -10,7 +10,7 @@ git clone https://github.com/anasfik/coding_challenge
 ```bash
 flutter pub get
 ```
-5. Run the app with:
+5. Run the app either from the build-in debug button in your IDE or by running in the command line:
 ```bash
 flutter run
 ```
