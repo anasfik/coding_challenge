@@ -42,9 +42,11 @@ class HomeCubit extends Cubit<HomeState> {
         },
       );
 
+  /// {@macro home_cubit}
   HomeCubit({
     required this.repository,
   }) : super(HomeInitial()) {
+    _fetchPosts();
     scrollController = ScrollController()
       ..addListener(() {
         if (scrollController!.nearToReachEndOfPage) {
@@ -52,8 +54,6 @@ class HomeCubit extends Cubit<HomeState> {
           loadMorePosts();
         }
       });
-
-    _fetchPosts();
   }
 
   /// Fetch posts from the [repository] and emit the new states based on the results.

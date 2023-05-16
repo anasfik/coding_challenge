@@ -23,7 +23,7 @@ class SoltanaPostFullScreenAppBar extends StatelessWidget
         IconButton(
           icon: const Icon(
             Icons.arrow_forward_ios,
-            size: 20,
+            size: 17,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
@@ -32,10 +32,13 @@ class SoltanaPostFullScreenAppBar extends StatelessWidget
             size: 26,
             color: Theme.of(context).primaryColor,
           ),
-      title: Image.network(
-        "https://placehold.it/150x150",
+      title: SizedBox(
         height: 50,
         width: 50,
+        child: Placeholder(
+          fallbackHeight: 50,
+          fallbackWidth: 50,
+        ),
       ),
     );
   }

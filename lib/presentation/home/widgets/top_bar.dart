@@ -11,10 +11,14 @@ class TopBar extends StatelessWidget {
             size: 26,
             color: Colors.white,
           ),
-      title: Image.network(
-        "https://placehold.it/150x150",
+      title: SizedBox(
         height: 50,
         width: 50,
+        child: Placeholder(
+          fallbackHeight: 50,
+          fallbackWidth: 50,
+          color: Colors.white,
+        ),
       ),
     );
   }

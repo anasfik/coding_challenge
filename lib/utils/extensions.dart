@@ -27,9 +27,10 @@ extension DateTimeExtension on DateTime {
 
 extension ScrollControllerExtension on ScrollController {
   bool get nearToReachEndOfPage {
-    final maxScroll = this.position.maxScrollExtent;
-    final currentScroll = this.position.pixels;
-    final delta = 50.0;
+    final maxScroll = position.maxScrollExtent;
+    final currentScroll = position.pixels;
+    const delta = 50.0;
+
     return maxScroll - currentScroll <= delta;
   }
 }

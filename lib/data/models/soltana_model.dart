@@ -3,23 +3,32 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'soltana_model.g.dart';
 
+/// {@template soltana_post}
+/// Represents a post data model that will be used in the app.
+/// {@endtemplate}
 @HiveType(typeId: 1)
 class SoltanaPost extends Equatable {
+  /// The title of the post.
   @HiveField(0)
   final String title;
 
+  /// The content of the post.
   @HiveField(1)
   final String content;
 
+  /// The image path of the post.
   @HiveField(2)
   final String imagePath;
 
+  /// The category of the post.
   @HiveField(3)
   final String? category;
 
+  /// The date of the post.
   @HiveField(4)
   final DateTime? date;
 
+  /// {@macro soltana_post}
   const SoltanaPost({
     required this.title,
     required this.content,
@@ -28,6 +37,7 @@ class SoltanaPost extends Equatable {
     this.date,
   });
 
+  /// Creates a [SoltanaPost] from a map.
   factory SoltanaPost.fromMap(Map<String, dynamic> map) {
     return SoltanaPost(
       title: map['title']['rendered'] as String,
