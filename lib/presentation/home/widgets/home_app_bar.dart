@@ -17,8 +17,8 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: <Color>[
-              Colors.purple,
-              Colors.purple.shade900,
+              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.primary,
             ],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,

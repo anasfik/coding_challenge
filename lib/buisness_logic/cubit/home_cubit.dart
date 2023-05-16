@@ -61,6 +61,7 @@ class HomeCubit extends Cubit<HomeState> {
       final currentFetchPosts = await repository.posts(paginationIndex);
 
       final posts = [...state.posts, ...currentFetchPosts];
+      posts.sort((a, b) => b.date!.compareTo(a.date!));
       emit(state.copyWith(
         posts: posts,
         paginationIndex: paginationIndex + 1,
@@ -88,6 +89,8 @@ class HomeCubit extends Cubit<HomeState> {
   /// Fetches for the saved posts from the local database and emit them as a ne state.
   void _loadPostsFromLocalDatabase() {
     final savedPosts = LocalDatabase.instance.getSavedPosts();
+    savedPosts.sort((a, b) => b.date!.compareTo(a.date!));
+
     if (savedPosts.isNotEmpty) {
       emit(state.copyWith(posts: savedPosts));
     } else {

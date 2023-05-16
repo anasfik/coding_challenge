@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
 
 final theme = ThemeData.from(
   colorScheme: const ColorScheme.light(
-    primary: Colors.purple,
-    secondary: Colors.purpleAccent,
+    primary: Color(0xFF662d91),
+    secondary: Color(0xFFae388f),
   ),
 ).copyWith(
   appBarTheme: const AppBarTheme(
@@ -50,19 +50,19 @@ final theme = ThemeData.from(
     indicatorColor: Colors.transparent,
     indicator: null,
     labelStyle: TextStyle(
-      fontFamily: "jaz-b",
+      fontFamily: "jaz-r",
     ),
   ),
   // apply a font from asset to textTheme
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     titleLarge: TextStyle(
       fontFamily: "jaz-b",
     ),
     labelMedium: TextStyle(
-      fontFamily: "jaz-b",
+      fontFamily: "jaz-r",
     ),
     bodyLarge: TextStyle(
-      fontFamily: "jaz-b",
+      fontFamily: "jaz-r",
     ),
   ),
 );

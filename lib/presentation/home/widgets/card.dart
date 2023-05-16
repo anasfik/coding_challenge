@@ -3,6 +3,7 @@ import 'package:coding_challenge_app/data/models/soltana_model.dart';
 import 'package:coding_challenge_app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../card_full_screen/card_full_screen.dart';
 import 'loader_widget.dart';
@@ -66,9 +67,9 @@ class SoltanaPostCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 15.0),
-          Text(
+          HtmlWidget(
             post.title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Colors.black,
                 ),
           ),
