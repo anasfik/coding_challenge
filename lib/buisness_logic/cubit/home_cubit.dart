@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/models/soltana_model.dart';
 import '../../data/repositories/soltana_repository.dart';
+import '../../data/services/local.dart';
 
 part 'home_state.dart';
 
@@ -30,5 +31,19 @@ class HomeCubit extends Cubit<HomeState> {
     } catch (e) {
       UnimplementedError();
     }
+  }
+
+  /// Fetches for more posts from the [repository] and emit the new states based on the results.
+  ///
+  /// This methods calls [_fetchPosts] internally, but ensures that we already fetched for the first page posts.
+  Future<void> loadMorePosts() {
+    // we ensure with this that we already fetched for the first page posts (we already called _fetchPosts before)
+    assert(state.paginationIndex > 1);
+
+    return _fetchPosts();
+  }
+
+  void _loadPostsFromLocalDatabase() {
+    LocalDatabase.instance;
   }
 }
