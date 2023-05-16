@@ -9,18 +9,29 @@ class BottomTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HomeCubit>();
-    return Flexible(
-      child: TabBar(
-        isScrollable: true,
-        tabs: List.generate(cubit.tabItems.length, (index) {
-          final current = cubit.tabItems[index];
-          final isFirst = index == 0;
+    return SizedBox(
+      height: 45,
+      child: Flexible(
+        child: TabBar(
+          indicator: null,
+          indicatorColor: Colors.transparent,
+          isScrollable: true,
+          tabs: List.generate(cubit.tabItems.length, (index) {
+            final current = cubit.tabItems[index];
+            final isFirst = index == 0;
 
-          return Tab(
-            icon: isFirst ? const Icon(Icons.home) : null,
-            text: isFirst ? null : current.name,
-          );
-        }).toList(),
+            return Container(
+              child: Tab(
+                child: isFirst
+                    ? const Icon(
+                        Icons.home,
+                        size: 20,
+                      )
+                    : Text(current.name),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

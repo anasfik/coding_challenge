@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                 } else {
                   final posts = state.posts;
                   return ListView.builder(
+                    padding: const EdgeInsets.only(top: 15),
                     itemCount: posts.length,
                     itemBuilder: (context, index) {
                       final current = posts[index];
