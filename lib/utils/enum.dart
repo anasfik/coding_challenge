@@ -1,0 +1,1 @@
+enum ApiLinkType { soltana }
