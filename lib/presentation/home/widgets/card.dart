@@ -1,4 +1,5 @@
 import 'package:coding_challenge_app/data/models/soltana_model.dart';
+import 'package:coding_challenge_app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 class SoltanaPostCard extends StatelessWidget {
@@ -13,9 +14,7 @@ class SoltanaPostCard extends StatelessWidget {
     return Container(
       clipBehavior: Clip.hardEdge,
       margin: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-      ),
+      decoration: const BoxDecoration(color: Colors.transparent),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -25,7 +24,19 @@ class SoltanaPostCard extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(post.imagePath),
+                child: Image.network(
+                  post.imagePath,
+                  width: double.infinity,
+                  height: 200.0,
+                  fit: BoxFit.fitWidth,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    return Container(
+                      height: 200.0,
+                      width: double.infinity,
+                      color: Colors.grey.shade300,
+                    );
+                  },
+                ),
               ),
               Positioned(
                 bottom: -10,
@@ -51,6 +62,13 @@ class SoltanaPostCard extends StatelessWidget {
           Text(
             post.title,
             style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 5.0),
+          Text(
+            post.date!.arabicFormatted,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: Colors.grey.shade600,
+                ),
           ),
           const SizedBox(height: 15.0),
         ],

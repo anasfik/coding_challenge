@@ -11,27 +11,25 @@ class BottomTabBar extends StatelessWidget {
     final cubit = context.read<HomeCubit>();
     return SizedBox(
       height: 45,
-      child: Flexible(
-        child: TabBar(
-          indicator: null,
-          indicatorColor: Colors.transparent,
-          isScrollable: true,
-          tabs: List.generate(cubit.tabItems.length, (index) {
-            final current = cubit.tabItems[index];
-            final isFirst = index == 0;
+      child: TabBar(
+        indicator: null,
+        indicatorColor: Colors.transparent,
+        isScrollable: true,
+        tabs: List.generate(cubit.tabItems.length, (index) {
+          final current = cubit.tabItems[index];
+          final isFirst = index == 0;
 
-            return Container(
-              child: Tab(
-                child: isFirst
-                    ? const Icon(
-                        Icons.home,
-                        size: 20,
-                      )
-                    : Text(current.name),
-              ),
-            );
-          }).toList(),
-        ),
+          return Container(
+            child: Tab(
+              child: isFirst
+                  ? const Icon(
+                      Icons.home,
+                      size: 20,
+                    )
+                  : Text(current.name),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

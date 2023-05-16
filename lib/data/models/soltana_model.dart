@@ -34,6 +34,7 @@ class SoltanaPost extends Equatable {
       content: map['content']['rendered'] as String,
       imagePath:
           (map["yoast_head_json"]['og_image'] as List).first["url"] as String,
+      date: DateTime.parse(map["date"] as String),
     );
   }
 
