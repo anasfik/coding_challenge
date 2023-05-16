@@ -36,6 +36,7 @@ class SoltanaProvider implements SoltanaProviderBase {
     }
   }
 
+  /// This will build the API link for the posts endpoint based on the given [index].
   String _buildSoltanaPostsApiLinkFromIndex(int index) {
     return ApiBuilder.instance
         .apiLinkFromLinkType(ApiLinkType.soltana)

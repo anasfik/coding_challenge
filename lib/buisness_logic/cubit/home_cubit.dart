@@ -46,6 +46,7 @@ class HomeCubit extends Cubit<HomeState> {
     return _fetchPosts();
   }
 
+  /// Fetches for the saved posts from the local database and emit them as a ne state.
   void _loadPostsFromLocalDatabase() {
     final savedPosts = LocalDatabase.instance.getSavedPosts();
     if (savedPosts.isNotEmpty) {
@@ -55,6 +56,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  /// Saves the given [posts] to the local database to be used later.
   void _saveFetchedPostsToLocalDatabase(List<SoltanaPost> posts) {
     LocalDatabase.instance.savePosts(posts);
   }
