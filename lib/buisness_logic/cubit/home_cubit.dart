@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/soltana_model.dart';
+import '../../data/models/tab_item.dart';
 import '../../data/repositories/soltana_repository.dart';
 import '../../data/services/local.dart';
 
@@ -13,6 +14,11 @@ part 'home_state.dart';
 /// {@endtemplate}
 class HomeCubit extends Cubit<HomeState> {
   final SoltanaRepository repository;
+  List<TabItem> tabItems = [
+    TabItem(name: 'All'),
+    TabItem(name: 'Saved'),
+  ];
+
   HomeCubit({
     required this.repository,
   }) : super(HomeInitial());
