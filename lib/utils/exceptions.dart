@@ -1,8 +1,8 @@
 class NetworkRequestException implements Exception {
   final String message;
-  final int statusCode;
+  final int? statusCode;
 
-  NetworkRequestException(this.message, this.statusCode);
+  NetworkRequestException(this.message, [this.statusCode]);
 
   @override
   String toString() {
