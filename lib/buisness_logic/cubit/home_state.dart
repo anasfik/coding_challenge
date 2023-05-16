@@ -11,23 +11,26 @@ class HomeState extends Equatable {
   /// The index of the pagination, which will be used to load more posts.
   final int paginationIndex;
 
+  /// Whether there is an error while fetching the posts or not.
+  final bool hasError;
+
   /// {@macro home_state}
   const HomeState({
     this.posts = const [],
     this.paginationIndex = 1,
+    this.hasError = false,
   });
 
   @override
-  List<Object?> get props => [posts, paginationIndex];
+  List<Object?> get props => [posts, paginationIndex, hasError];
 
   /// This generates a new state with the provided new values.
-  HomeState copyWith({
-    List<SoltanaPost>? posts,
-    int? paginationIndex,
-  }) {
+  HomeState copyWith(
+      {List<SoltanaPost>? posts, int? paginationIndex, bool? hasError}) {
     return HomeState(
       posts: posts ?? this.posts,
       paginationIndex: paginationIndex ?? this.paginationIndex,
+      hasError: hasError ?? this.hasError,
     );
   }
 }

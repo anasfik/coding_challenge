@@ -28,8 +28,11 @@ class HomeCubit extends Cubit<HomeState> {
 
       final posts = [...state.posts, ...currentFetchPosts];
       emit(state.copyWith(posts: posts, paginationIndex: paginationIndex + 1));
+      _saveFetchedPostsToLocalDatabase(posts);
     } catch (e) {
-      UnimplementedError();
+      _loadPostsFromLocalDatabase();
+    } finally {
+      emit(state.copyWith(hasError: false));
     }
   }
 
@@ -44,6 +47,15 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void _loadPostsFromLocalDatabase() {
-    LocalDatabase.instance;
+    final savedPosts = LocalDatabase.instance.getSavedPosts();
+    if (savedPosts.isNotEmpty) {
+      emit(state.copyWith(posts: savedPosts));
+    } else {
+      emit(state.copyWith(posts: [], hasError: true));
+    }
+  }
+
+  void _saveFetchedPostsToLocalDatabase(List<SoltanaPost> posts) {
+    LocalDatabase.instance.savePosts(posts);
   }
 }
