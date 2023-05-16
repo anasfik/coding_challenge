@@ -26,7 +26,9 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
         child: Column(
           children: const <Widget>[
+            SizedBox(height: 7.5),
             TopBar(),
+            Spacer(),
             BottomTabBar(),
           ],
         ),

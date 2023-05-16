@@ -14,10 +14,21 @@ part 'home_state.dart';
 /// {@endtemplate}
 class HomeCubit extends Cubit<HomeState> {
   final SoltanaRepository repository;
-  List<TabItem> tabItems = [
-    TabItem(name: 'All'),
-    TabItem(name: 'Saved'),
-  ];
+  List<TabItem> get tabItems => [
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+        TabItem(name: 'الرئيسية'),
+      ];
 
   HomeCubit({
     required this.repository,

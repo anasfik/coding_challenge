@@ -9,7 +9,11 @@ class TopBar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
-      title: Image.network("https://placehold.it/150x150"),
+      title: Image.network(
+        "https://placehold.it/150x150",
+        height: 50,
+        width: 50,
+      ),
     );
   }
 }
