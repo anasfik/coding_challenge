@@ -34,6 +34,7 @@ class LocalDatabase implements LocalDatabaseBase {
   @override
   Future<void> savePosts(List<SoltanaPost> posts) {
     final box = Hive.box<SoltanaPost>('posts');
+
     return box.addAll(posts);
   }
 }

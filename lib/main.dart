@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: MaterialApp(
           theme: theme,
-          title: 'Coding challeng',
+          title: 'Coding challenge',
           home: const HomeScreen(),
           builder: (context, child) {
             return Directionality(

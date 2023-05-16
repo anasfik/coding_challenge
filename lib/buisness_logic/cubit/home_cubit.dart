@@ -14,10 +14,14 @@ part 'home_state.dart';
 /// This cubit responsible of managing the home screen state.
 /// {@endtemplate}
 class HomeCubit extends Cubit<HomeState> {
+  /// The repository that will be used to fetch the posts.
   final SoltanaRepository repository;
+
+  /// The scroll controller that will be used to detect the end of the page and load more posts.
   ScrollController? scrollController;
 
-  List<TabItem> get tabItems => [
+  /// The list of the tabs that will be displayed in the home screen.
+  List<TabItem> get tabItems => const [
         TabItem(name: 'الرئيسية'),
         TabItem(name: 'الرئيسية'),
         TabItem(name: 'الرئيسية'),
@@ -57,12 +61,17 @@ class HomeCubit extends Cubit<HomeState> {
       final currentFetchPosts = await repository.posts(paginationIndex);
 
       final posts = [...state.posts, ...currentFetchPosts];
-      emit(state.copyWith(posts: posts, paginationIndex: paginationIndex + 1));
+      emit(state.copyWith(
+        posts: posts,
+        paginationIndex: paginationIndex + 1,
+        hasError: false,
+      ));
+
       _saveFetchedPostsToLocalDatabase(posts);
     } catch (e) {
       _loadPostsFromLocalDatabase();
     } finally {
-      emit(state.copyWith(hasError: false, isFetching: false));
+      emit(state.copyWith(isFetching: false));
     }
   }
 

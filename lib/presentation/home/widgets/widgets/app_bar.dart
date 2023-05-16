@@ -17,7 +17,7 @@ class SoltanaPostFullScreenAppBar extends StatelessWidget
       ),
       leading: IconButton(
         icon: const Icon(Icons.menu),
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () {},
       ),
       actions: <Widget>[
         IconButton(

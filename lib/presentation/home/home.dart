@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => BlocProvider.value(
+                              builder: (_) => BlocProvider.value(
                                 value: cubit,
                                 child: SoltanaPostFullScreen(post: current),
                               ),
