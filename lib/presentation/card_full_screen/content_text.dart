@@ -14,7 +14,10 @@ class SoltanaPostFullScreenText extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 15),
       child: HtmlWidget(
         content,
-        textStyle: Theme.of(context).textTheme.bodyLarge,
+        textStyle: Theme.of(context)
+            .textTheme
+            .bodyLarge
+            ?.copyWith(color: Colors.black),
       ),
     );
   }

@@ -26,7 +26,10 @@ class BottomTabBar extends StatelessWidget {
                       Icons.home,
                       size: 20,
                     )
-                  : Text(current.name),
+                  : Text(
+                      current.name,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
             ),
           );
         }).toList(),

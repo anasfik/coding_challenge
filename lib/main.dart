@@ -49,5 +49,20 @@ final theme = ThemeData.from(
   tabBarTheme: const TabBarTheme(
     indicatorColor: Colors.transparent,
     indicator: null,
+    labelStyle: TextStyle(
+      fontFamily: "jaz-b",
+    ),
+  ),
+  // apply a font from asset to textTheme
+  textTheme: TextTheme(
+    titleLarge: TextStyle(
+      fontFamily: "jaz-b",
+    ),
+    labelMedium: TextStyle(
+      fontFamily: "jaz-b",
+    ),
+    bodyLarge: TextStyle(
+      fontFamily: "jaz-b",
+    ),
   ),
 );

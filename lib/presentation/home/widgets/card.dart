@@ -68,7 +68,9 @@ class SoltanaPostCard extends StatelessWidget {
           const SizedBox(height: 15.0),
           Text(
             post.title,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: Colors.black,
+                ),
           ),
           const SizedBox(height: 5.0),
           Text(
