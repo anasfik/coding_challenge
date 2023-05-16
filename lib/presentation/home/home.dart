@@ -1,4 +1,5 @@
 import 'package:coding_challenge_app/buisness_logic/cubit/home_cubit.dart';
+import 'package:coding_challenge_app/presentation/home/widgets/card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,8 +21,24 @@ class HomeScreen extends StatelessWidget {
           child: Scaffold(
             drawer: Drawer(),
             appBar: const HomeAppBar(),
-            body: const Center(
-              child: Text('Hello world'),
+            body: BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state.hasError) {
+                  return Center(
+                    child: Icon(Icons.error),
+                  );
+                } else {
+                  final posts = state.posts;
+                  return ListView.builder(
+                    itemCount: posts.length,
+                    itemBuilder: (context, index) {
+                      final current = posts[index];
+
+                      return SoltanaPostCard(post: current);
+                    },
+                  );
+                }
+              },
             ),
           ),
         ),
