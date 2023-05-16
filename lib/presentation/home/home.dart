@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repositories/soltana_repository.dart';
+import 'widgets/home_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,12 @@ class HomeScreen extends StatelessWidget {
       create: (context) => HomeCubit(
         repository: RepositoryProvider.of<SoltanaRepository>(context),
       ),
-      child: Container(),
+      child: Scaffold(
+        appBar: const HomeAppBar(),
+        body: const Center(
+          child: Text('Hello world'),
+        ),
+      ),
     );
   }
 }
