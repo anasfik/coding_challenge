@@ -11,27 +11,24 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HomeCubit>();
-    return DefaultTabController(
-      length: cubit.tabItems.length,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: <Color>[
-              Theme.of(context).colorScheme.secondary,
-              Theme.of(context).colorScheme.primary,
-            ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
-        ),
-        child: Column(
-          children: const <Widget>[
-            SizedBox(height: 7.5),
-            TopBar(),
-            Spacer(),
-            BottomTabBar(),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[
+            Theme.of(context).colorScheme.secondary,
+            Theme.of(context).colorScheme.primary,
           ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
         ),
+      ),
+      child: Column(
+        children: const <Widget>[
+          SizedBox(height: 7.5),
+          TopBar(),
+          Spacer(),
+          BottomTabBar(),
+        ],
       ),
     );
   }

@@ -16,44 +16,22 @@ class HomeScreen extends StatelessWidget {
       create: (context) => HomeCubit(
         repository: RepositoryProvider.of<SoltanaRepository>(context),
       ),
-      child: SafeArea(
-        child: Scaffold(
-          drawer: const Drawer(),
-          appBar: const HomeAppBar(),
-          body: BlocBuilder<HomeCubit, HomeState>(
-            builder: (context, state) {
-              final cubit = context.read<HomeCubit>();
+      child: Builder(
+        builder: (context) {
+          final cubit = context.read<HomeCubit>();
 
-              if (state.hasError) {
-                return const Center(
-                  child: Icon(Icons.error),
-                );
-              } else {
-                final posts = state.posts;
-                return ListView.builder(
-                  itemCount: posts.length,
-                  controller: cubit.scrollController,
-                  itemBuilder: (context, index) {
-                    final current = posts[index];
-
-                    return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => BlocProvider.value(
-                                value: cubit,
-                                child: SoltanaPostFullScreen(post: current),
-                              ),
-                            ),
-                          );
-                        },
-                        child: SoltanaPostCard(post: current));
-                  },
-                );
-              }
-            },
-          ),
-        ),
+          return SafeArea(
+            child: DefaultTabController(
+                length: cubit.tabItems.length,
+                child: Scaffold(
+                  drawer: const Drawer(),
+                  appBar: const HomeAppBar(),
+                  body: TabBarView(
+                    children: cubit.tabItems.map((e) => e.screen).toList(),
+                  ),
+                )),
+          );
+        },
       ),
     );
   }

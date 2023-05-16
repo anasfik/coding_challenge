@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../buisness_logic/cubit/home_cubit.dart';
 import '../home/widgets/card.dart';
-import '../home/widgets/widgets/app_bar.dart';
+import '../home/widgets/app_bar.dart';
 import 'content_text.dart';
 
 class SoltanaPostFullScreen extends StatelessWidget {

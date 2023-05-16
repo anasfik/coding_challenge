@@ -7,6 +7,7 @@ import '../../data/models/soltana_model.dart';
 import '../../data/models/tab_item.dart';
 import '../../data/repositories/soltana_repository.dart';
 import '../../data/services/local.dart';
+import '../../presentation/home/widgets/posts_list_view.dart';
 
 part 'home_state.dart';
 
@@ -21,21 +22,25 @@ class HomeCubit extends Cubit<HomeState> {
   ScrollController? scrollController;
 
   /// The list of the tabs that will be displayed in the home screen.
-  List<TabItem> get tabItems => const [
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-        TabItem(name: 'الرئيسية'),
-      ];
+  List<TabItem> get tabItems => List.generate(
+        20,
+        (index) {
+          return TabItem(
+            name: "الرئيسية",
+            screen: index == 0
+                ? const HomePostCardsListView()
+                : Center(
+                    child: Text(
+                      "Might be view $index",
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+          );
+        },
+      );
 
   HomeCubit({
     required this.repository,
@@ -62,6 +67,7 @@ class HomeCubit extends Cubit<HomeState> {
 
       final posts = [...state.posts, ...currentFetchPosts];
       posts.sort((a, b) => b.date!.compareTo(a.date!));
+
       emit(state.copyWith(
         posts: posts,
         paginationIndex: paginationIndex + 1,
