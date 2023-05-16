@@ -20,7 +20,8 @@ class SoltanaPostCard extends StatelessWidget {
       tag: post.date.toString(),
       child: Container(
         clipBehavior: Clip.hardEdge,
-        margin: const EdgeInsets.all(15.0),
+        margin: const EdgeInsets.symmetric(horizontal: 15.0) +
+            const EdgeInsets.only(top: 15.0),
         decoration: const BoxDecoration(color: Colors.transparent),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

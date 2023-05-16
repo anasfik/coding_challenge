@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class SoltanaPostFullScreenText extends StatelessWidget {
   const SoltanaPostFullScreenText({
@@ -11,7 +12,10 @@ class SoltanaPostFullScreenText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(content),
+      child: HtmlWidget(
+        content,
+        textStyle: Theme.of(context).textTheme.bodyLarge,
+      ),
     );
   }
 }
